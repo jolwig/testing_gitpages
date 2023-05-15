@@ -1,16 +1,18 @@
 import plotly.express as px
 import pandas as pd
 
-df = pd.read_csv("Wine_RegionColor.csv")
+df = pd.read_csv("Wine_RegionColor_Cleaned.csv")
 
 #histogram for quality column
-hist = px.histogram(df, x='quality')
+hist = px.histogram(df, x='quality', color_discrete_sequence=['#a31038'], labels={'quality':'Quality Rating', 'count':'Count'})
+
+hist.update_layout(
+    plot_bgcolor='#f7bfb0'
+)
 
 hist.write_html("docs/histogram.html")
 
-# CREATE BOX PLOT
-
-quality_avgs_df = df.groupby(by=["quality"], as_index=False).mean()
+hist.show()
 
 
 
